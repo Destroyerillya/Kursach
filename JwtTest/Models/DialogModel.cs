@@ -15,6 +15,8 @@ namespace JwtTest.Models
         
         public int Receiver { get; set;}
         
+        [DisplayName("Сообщение")]
+        [Required(ErrorMessage = "Текст сообщения не может быть пустым")]
         public string MessageText { get; set;}
     }
 }

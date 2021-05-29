@@ -11,10 +11,13 @@ namespace JwtTest.Models
 {
     public class ListGroupModel
     {
+        [DisplayName("Группы")]
         public List<Group> Groups{ get; set; }
         
         public virtual Person Sender { get; set;}
         
+        [DisplayName("Название группы")]
+        [Required(ErrorMessage = "Название группы не может быть пустым")]
         public string Title { get; set; }
     }
 }

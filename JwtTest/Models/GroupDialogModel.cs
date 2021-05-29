@@ -14,7 +14,9 @@ namespace JwtTest.Models
         public List<GroupMessage> Messages{ get; set; }
         
         public int RecipientGroup { get; set; }
-
+        
+        [DisplayName("Сообщение")]
+        [Required(ErrorMessage = "Текст сообщения не может быть пустым")]
         public string MessageText { get; set;}
     }
 }

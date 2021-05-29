@@ -1,0 +1,56 @@
+﻿@model GroupDialogModel
+@{
+    ViewData["Title"] = "Диалоги";
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SendGroupMessage" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="RecipientGroup" />
+            <div class="form-group">
+                <label asp-for="MessageText" class="control-label"></label>
+                <input asp-for="MessageText" class="form-control" />
+                <span asp-validation-for="MessageText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Отправить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Время отправки
+        </th>
+        <th>
+            Текст сообщения
+        </th>
+        <th>
+            Отправитель
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Messages)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeOfDispatch)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MessageText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sender.Login)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

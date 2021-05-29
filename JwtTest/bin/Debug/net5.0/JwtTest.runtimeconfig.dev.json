@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\igri-\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\igri-\\.nuget\\packages"
+    ]
+  }
+}

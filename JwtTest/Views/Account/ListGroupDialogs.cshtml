@@ -1,0 +1,55 @@
+﻿@model ListGroupModel
+@{
+    ViewData["Title"] = "Группы";
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateGroup" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Создать группу" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Groups)
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Groups)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            @if (item.MembersOfTheGroup.Contains(Model.Sender))
+            {
+                <td>
+                    <a class="nav-link text-dark" asp-action="GetGroupDialog" asp-route-id="@item.Id">Написать сообщение</a>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <a class="nav-link text-dark" asp-action="EnterToGroup" asp-route-id="@item.Id">Вступить в группу</a>
+                </td>
+            }
+        </tr>
+    }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
